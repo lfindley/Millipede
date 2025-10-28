@@ -15,7 +15,9 @@ public class GameManager : MonoBehaviour
     public GameObject gameOver;
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI livesText;
+    public TextMeshProUGUI highScoreText;
 
+    private int highScore = 0;
     public int score { get; private set; } = 0;
     public int lives { get; private set; } = 3;
 
@@ -45,6 +47,8 @@ public class GameManager : MonoBehaviour
         millipede = FindObjectOfType<Millipede>();
         mushroomField = FindObjectOfType<MushroomField>();
 
+        highScore = HighScoreManager.GetHighScore();
+        UpdateHighScoreUI();
         NewGame();
     }
 
@@ -66,6 +70,7 @@ public class GameManager : MonoBehaviour
         mushroomField.Clear();
         mushroomField.Generate();
         gameOver.SetActive(false);
+        UpdateHighScoreUI();
     }
 
     public void ResetRound()
@@ -88,6 +93,12 @@ public class GameManager : MonoBehaviour
         SoundManager.I.Play(SoundEvent.GameOver);
         gameOver.SetActive(true);
         blaster.gameObject.SetActive(false);
+
+        if (HighScoreManager.TrySetHighScore(score))
+        {
+            highScore = score;
+            UpdateHighScoreUI();
+        }
     }
 
     public void IncreaseScore(int amount)
@@ -112,5 +123,13 @@ public class GameManager : MonoBehaviour
     {
         lives = Mathf.Max(value, 0);
         livesText.text = lives.ToString();
+    }
+
+    private void UpdateHighScoreUI()
+    {
+        if (highScoreText != null)
+        {
+            highScoreText.text = $"High Score: {highScore}";
+        }
     }
 }
