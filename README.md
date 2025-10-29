@@ -1,2 +1,2 @@
 # Millipede Game
- Remake of Centipede Arcade Game
+ Student version of Centipede Arcade Game
