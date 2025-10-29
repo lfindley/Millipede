@@ -12,9 +12,9 @@ public class Blaster : MonoBehaviour
     public float speed = 20f;
 
     [Header("Shooting")]
-    public GameObject dartPrefab;     // Assign in Inspector
-    public Transform firePoint;       // Assign in Inspector
-    public float fireCooldown = 0.2f; // Time between shots
+    public GameObject dartPrefab;     
+    public Transform firePoint;       
+    public float fireCooldown = 0.15f;
 
     private float lastFireTime = 0f;
 
@@ -26,11 +26,9 @@ public class Blaster : MonoBehaviour
 
     private void Update()
     {
-        // Movement input
         direction.x = Input.GetAxis("Horizontal");
         direction.y = Input.GetAxis("Vertical");
 
-        // Shooting input
         if (Input.GetButton("Jump") && Time.time > lastFireTime + fireCooldown)
         {
             Shoot();
@@ -49,7 +47,6 @@ public class Blaster : MonoBehaviour
         // Spawn the dart
         Instantiate(dartPrefab, firePoint.position, Quaternion.identity);
 
-        // Play shoot SFX
         if (SoundManager.I != null)
             SoundManager.I.Play(SoundEvent.Shoot);
 

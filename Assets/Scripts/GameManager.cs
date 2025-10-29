@@ -132,4 +132,11 @@ public class GameManager : MonoBehaviour
             highScoreText.text = $"High Score: {highScore}";
         }
     }
+
+    public void RefreshHighScoreFromSave()
+    {
+        highScore = HighScoreManager.GetHighScore();
+        UpdateHighScoreUI();
+    }
+
 }

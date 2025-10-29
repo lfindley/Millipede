@@ -11,8 +11,8 @@ public class Dart : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        rb.gravityScale = 0f;  // no falling
-        rb.collisionDetectionMode = CollisionDetectionMode2D.Continuous; // better accuracy
+        rb.gravityScale = 0f;  
+        rb.collisionDetectionMode = CollisionDetectionMode2D.Continuous; 
         rb.freezeRotation = true;
     }
 
