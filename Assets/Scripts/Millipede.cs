@@ -68,7 +68,7 @@ public class Millipede : MonoBehaviour
         }
     }
 
-    public void Respawn()
+    public void Respawn(int size)
     {
         foreach (MillipedeSegment segment in segments)
         {

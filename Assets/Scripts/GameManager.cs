@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     private int highScore = 0;
     public int score { get; private set; } = 0;
     public int lives { get; private set; } = 3;
+    public int millipedeSize = 12;
 
     private void Awake()
     {
@@ -66,7 +67,7 @@ public class GameManager : MonoBehaviour
         SetLives(3);
 
         blaster.Respawn();
-        millipede.Respawn();
+        millipede.Respawn(millipedeSize = 12);
         mushroomField.Clear();
         mushroomField.Generate();
         gameOver.SetActive(false);
@@ -84,7 +85,7 @@ public class GameManager : MonoBehaviour
         }
 
         mushroomField.Heal();
-        millipede.Respawn();
+        millipede.Respawn(millipedeSize);
         blaster.Respawn();
     }
 
@@ -110,7 +111,7 @@ public class GameManager : MonoBehaviour
     {
         SoundManager.I.Play(SoundEvent.LevelUp);
         millipede.speed *= 1.1f;
-        millipede.Respawn();
+        millipede.Respawn(millipedeSize += 4);
     }
 
     private void SetScore(int value)
