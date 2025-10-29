@@ -140,4 +140,10 @@ public class GameManager : MonoBehaviour
         UpdateHighScoreUI();
     }
 
+    public void AddLife()
+    {
+        lives++;
+        livesText.text = lives.ToString();
+    }
+
 }
